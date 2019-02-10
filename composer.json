@@ -1,0 +1,21 @@
+{
+  "name" : "uzbek/simplemvc",
+  "description": "Simple MVC",
+  "keywords": ["mvc", "taskbook"],
+  "authors": [
+    {
+      "name": "Inoyatullokhon",
+      "email": "mronx@ya.ru"
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "app/"
+    ],
+    "files": [
+      "app/helpers/app.php",
+      "app/helpers/array.php",
+      "app/helpers/string.php"
+    ]
+  }
+}
