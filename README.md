@@ -32,7 +32,7 @@ Route::get($path, $callback, $name);
 // $name - string, Name of Route, For alias and url generation
 
 Route::get('/', 'MainController@index', 'main.url');
-
+Route::get('posts/([0-9]+)', 'PostsController@show', 'post.show');
 ```
 
 - Model example: 
@@ -55,4 +55,11 @@ $user->save(); // returns created User object.
 // Delete
 $user = User::find(1);
 $user->delete();
+```
+
+- Helpers
+```
+view()   - make View, and returns View object.
+layout() - make View, and returns Html content (string)
+app()    - returns App instance
 ```
