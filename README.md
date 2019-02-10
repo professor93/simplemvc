@@ -62,4 +62,6 @@ $user->delete();
 view()   - make View, and returns View object.
 layout() - make View, and returns Html content (string)
 app()    - returns App instance
+
+some string and array helpers (see app/helpers directory).
 ```

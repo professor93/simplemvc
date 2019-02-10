@@ -21,7 +21,7 @@
         <div class="maintext">
             <h1><?= e($welcome) ?></h1>
         </div>
-        <a href="/start">Start</a>
+        <a href="https://github.com/professor93/simplemvc">Start</a>
         <p>&copy; <?= date('Y') ?> - <?= app()->name . ' (' .app()->version.')' ?></p>
     </div>
 </div>

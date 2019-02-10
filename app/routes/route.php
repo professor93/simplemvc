@@ -8,15 +8,7 @@
 
 use App\Core\Route;
 
-Route::get('/', 'MainController@index','');
-
-Route::get('/signin', 'MainController@signin','signin');
-
-Route::get('/start', 'MainController@start','start');
-
-Route::post('/a', function () {
-    echo 'test';
-});
+Route::get('/', 'MainController@index', '');
 
 Route::pathNotFound(function () {
     return view('404', ['code' => '404']);
