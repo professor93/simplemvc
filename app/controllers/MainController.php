@@ -8,7 +8,6 @@
 
 namespace App\Controllers;
 
-
 use App\Core\Controller;
 
 class MainController extends Controller
@@ -16,15 +15,5 @@ class MainController extends Controller
     public function index()
     {
         return view('index', ['welcome'=> app()->name]);
-    }
-
-    public function signin()
-    {
-        return view('signin');
-    }
-
-    public function start()
-    {
-        return view('home');
     }
 }
