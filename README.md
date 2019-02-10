@@ -1,4 +1,4 @@
-# simplemvc
+# Simplemvc
 Simple mvc example on PHP Language
 
 ---
@@ -21,7 +21,8 @@ then:
 
 `composer dump-autoload`
 
-
+---
+### Docs
 - Route example:
 
 ```
@@ -32,4 +33,26 @@ Route::get($path, $callback, $name);
 
 Route::get('/', 'MainController@index', 'main.url');
 
+```
+
+- Model example: 
+```
+// Select
+User::find($id); // get one item from users table.
+User::all(); // get all users
+
+// Update
+$user = User::find(1);
+$user->name = 'John';
+$user->save();
+
+// Instert
+$user = new User();
+$user->name = 'Harry';
+$user->email = 'henry.ford@gmail.com';
+$user->save(); // returns created User object.
+
+// Delete
+$user = User::find(1);
+$user->delete();
 ```
