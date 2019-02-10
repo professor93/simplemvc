@@ -12,3 +12,24 @@ Directory structure:
  app/routes    -     Route files (default route: route.php)
  app/views     -     View template files
 ```
+
+Install:
+
+`git clone https://github.com/professor93/simplemvc`
+
+then:
+
+`composer dump-autoload`
+
+
+- Route example:
+
+```
+Route::get($path, $callback, $name);
+// $path -  string, Path for routing
+// $callback - string|callback , Callback function or Controller action or maybe simple string
+// $name - string, Name of Route, For alias and url generation
+
+Route::get('/', 'MainController@index', 'main.url');
+
+```
