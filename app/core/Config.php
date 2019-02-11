@@ -1,38 +1,42 @@
 <?php
 
-use App\Core\Contracts\ConfigContract;
-use App\Core\Contracts\SingletonContract;
-
 /**
  * Created by PhpStorm.
  * User: professor
  * Date: 10.02.2019
  * Time: 0:57
  */
+
+use App\Core\Contracts\ConfigContract;
+use App\Core\Contracts\SingletonContract;
+use App\Core\Helpers\ArrayHelper;
+
 class Config implements ConfigContract, SingletonContract
 {
 
-    private static $instance = null;
+    private static $instance;
     private $repository;
     private $dottedRepository;
 
     public function __construct()
     {
         $this->repository = $this->collectConfigs();
-        $this->dottedRepository = array_dot($this->repository);
+        $this->dottedRepository = ArrayHelper::dot($this->repository);
     }
 
     /**
      * Get config value
      * @param string $key
+     * @param string|array|null $default
      * @return string|array
      */
     public static function get(string $key, $default = null)
     {
-        if (strlen($key) < 1)
+        if ($key === '') {
             return $default;
+        }
 
-        $config = Config::getInstance();
+        $config = self::getInstance();
 
         if (isset($config->dottedRepository[$key]))
             return $config->dottedRepository[$key];
@@ -61,9 +65,9 @@ class Config implements ConfigContract, SingletonContract
 
 
     /**
-     * @return self
+     * @return Config
      */
-    public static function getInstance()
+    public static function getInstance(): Config
     {
         if (null === self::$instance) {
             self::$instance = new self();

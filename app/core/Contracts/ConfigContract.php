@@ -13,6 +13,7 @@ interface ConfigContract
 {
     /**
      * @param string $key
+     * @param string|array|null $default
      * @return string|array
      */
     public static function get(string $key, $default=null);

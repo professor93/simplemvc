@@ -6,7 +6,7 @@
  * Time: 23:07
  */
 
-namespace App\Controllers;
+namespace Controllers;
 
 use App\Core\Controller;
 

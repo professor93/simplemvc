@@ -18,10 +18,10 @@ use Config;
 class App implements SingletonContract
 {
 
-    public $name = 'AppName';
-    public $version = '0.0.1';
-    public $db = null;
-    private static $instance = null;
+    public $name = 'SimpleMVC';
+    public $version = '0.1.7';
+    public $db;
+    private static $instance;
 
     public function __construct()
     {
@@ -39,7 +39,7 @@ class App implements SingletonContract
     /**
      * @return App
      */
-    public static function getInstance()
+    public static function getInstance() : App
     {
         if (null === self::$instance) {
             self::$instance = new self();
@@ -47,9 +47,29 @@ class App implements SingletonContract
         return self::$instance;
     }
 
-    public function run()
+    public function run(): void
     {
-        include_once(APP_PATH . 'routes/route.php');
+        $this->includeHelpers();
+        $this->includeControllers();
+        $this->collectRoutes();
         Route::run();
+    }
+
+    private function collectRoutes(): void
+    {
+        include_once ROUTES_PATH . 'route.php';
+    }
+
+    private function includeHelpers(): void
+    {
+        $helpers = glob(HELPERS_PATH . '*.php');
+        foreach ($helpers as $helper) {
+            include_once $helper;
+        }
+    }
+
+    private function includeControllers()
+    {
+
     }
 }

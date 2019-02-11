@@ -6,11 +6,9 @@
  * Time: 23:07
  */
 
-namespace App\Models;
-
+namespace Models;
 
 use App\Core\Model;
-
 
 
 class User extends Model

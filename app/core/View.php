@@ -20,7 +20,7 @@ class View extends ViewAbstract
         if (is_array($args)) {
             extract($args, EXTR_SKIP);
         }
-        $file = APP_PATH . "views/$template.php";  // relative to Core directory
+        $file = ROOT_PATH . "views/$template.php";  // relative to Core directory
         if (is_readable($file)) {
             ob_start();
             require $file;

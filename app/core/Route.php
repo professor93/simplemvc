@@ -132,7 +132,7 @@ class Route implements RouteContract
     {
         $arr = array_values(array_filter(explode('@', $path), 'strlen'));
         if (count($arr) === 2) {
-            $ns = '\\App\\Controllers\\';
+            $ns = '\\Controllers\\';
             $class = $ns . $arr[0];
             $func = $arr[1];
             if (class_exists($class) && method_exists($class, $func))

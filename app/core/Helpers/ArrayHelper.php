@@ -1,13 +1,20 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: professor
  * Date: 09.02.2019
- * Time: 23:59
+ * Time: 23:53
  */
 
+namespace App\Core\Helpers;
 
-if (!function_exists('array_set')) {
+
+use Closure;
+
+class ArrayHelper
+{
+
     /**
      * Set an array item to a given value using "dot" notation.
      *
@@ -18,7 +25,7 @@ if (!function_exists('array_set')) {
      * @param  mixed $value
      * @return array
      */
-    function array_set(&$array, $key, $value)
+    public static function set(&$array, $key, $value)
     {
         if (null === $key) return $array = $value;
         $keys = explode('.', $key);
@@ -35,9 +42,7 @@ if (!function_exists('array_set')) {
         $array[array_shift($keys)] = $value;
         return $array;
     }
-}
 
-if (!function_exists('array_dot')) {
     /**
      * Flatten a multi-dimensional associative array with dots.
      *
@@ -45,21 +50,19 @@ if (!function_exists('array_dot')) {
      * @param  string $prepend
      * @return array
      */
-    function array_dot($array, $prepend = '')
+    public static function dot($array, $prepend = '')
     {
         $results = array();
         foreach ($array as $key => $value) {
             if (is_array($value)) {
-                $results = array_merge($results, array_dot($value, $prepend . $key . '.'));
+                $results = array_merge($results, self::dot($value, $prepend . $key . '.'));
             } else {
                 $results[$prepend . $key] = $value;
             }
         }
         return $results;
     }
-}
 
-if (!function_exists('array_undot')) {
     /**
      * Process dot array will return undot array.
      *
@@ -67,17 +70,15 @@ if (!function_exists('array_undot')) {
      *
      * @return array
      */
-    function array_undot(array $dotNotationArray)
+    public static function undot(array $dotNotationArray)
     {
         $array = [];
         foreach ($dotNotationArray as $key => $value) {
-            array_set($array, $key, $value);
+            self::set($array, $key, $value);
         }
         return $array;
     }
-}
 
-if (!function_exists('array_where')) {
     /**
      * Filter the array using the given Closure.
      *
@@ -85,7 +86,7 @@ if (!function_exists('array_where')) {
      * @param  \Closure $callback
      * @return array
      */
-    function array_where($array, Closure $callback)
+    public static function where($array, Closure $callback)
     {
         $filtered = array();
         foreach ($array as $key => $value) {
@@ -93,4 +94,7 @@ if (!function_exists('array_where')) {
         }
         return $filtered;
     }
+
 }
+
+?>
