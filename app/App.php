@@ -13,7 +13,7 @@ namespace App;
 use App\Core\Contracts\SingletonContract;
 use App\Core\Database\DB;
 use App\Core\Route;
-use Config;
+use App\Core\Config;
 
 class App implements SingletonContract
 {

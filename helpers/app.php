@@ -31,7 +31,7 @@ if (!function_exists('app')) {
 if (!function_exists('config')) {
     function config($key, $default=null)
     {
-        return Config::get($key, $default);
+        return \App\Core\Config::get($key, $default);
     }
 }
 

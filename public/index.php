@@ -26,3 +26,7 @@ Bootloader::autoload();
 
 $app = App::getInstance();
 $app->run();
+
+echo '<pre>';
+print_r(get_declared_classes());
+echo '</pre>';

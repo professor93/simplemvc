@@ -7,6 +7,8 @@
  * Time: 0:57
  */
 
+namespace App\Core;
+
 use App\Core\Contracts\ConfigContract;
 use App\Core\Contracts\SingletonContract;
 use App\Core\Helpers\ArrayHelper;
