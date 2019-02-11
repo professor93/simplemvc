@@ -1365,7 +1365,9 @@ class DB
 
         if ($type === 'oracle') {
             return 0;
-        } elseif ($type === 'pgsql') {
+        }
+
+        if ($type === 'pgsql') {
             return $this->pdo->query('SELECT LASTVAL()')->fetchColumn();
         }
 

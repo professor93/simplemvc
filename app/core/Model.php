@@ -35,8 +35,11 @@ class Model extends ModelAbstract
     public static function find($id)
     {
         $item = parent::find($id);
-        $className = get_called_class();
-        return new $className($item);
+        if ($item) {
+            $className = get_called_class();
+            return new $className($item);
+        }
+        return null;
     }
 
     public function toArray()

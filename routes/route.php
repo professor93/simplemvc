@@ -9,9 +9,8 @@
 use App\Core\Route;
 
 Route::get('/', 'MainController@index', '');
-Route::get('/test', function () {
-    return 'Hello Route';
-});
+Route::get('/signin', 'MainController@signin', 'signin');
+Route::get('/start', 'MainController@start', 'start');
 
 Route::pathNotFound(function () {
     return view('404', ['code' => '404']);

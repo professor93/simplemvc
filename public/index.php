@@ -9,7 +9,6 @@
 use App\App;
 use App\Bootloader;
 
-//require_once '../app/Bootloader.php';
 require_once '../vendor/autoload.php';
 
 define('ROOT_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR);
@@ -21,12 +20,7 @@ define('ROUTES_PATH', ROOT_PATH . 'routes' . DIRECTORY_SEPARATOR);
 define('HELPERS_PATH', ROOT_PATH . 'helpers' . DIRECTORY_SEPARATOR);
 define('VIEWS_PATH', ROOT_PATH . 'views' . DIRECTORY_SEPARATOR);
 
-
 Bootloader::autoload();
 
 $app = App::getInstance();
 $app->run();
-
-echo '<pre>';
-print_r(get_declared_classes());
-echo '</pre>';
