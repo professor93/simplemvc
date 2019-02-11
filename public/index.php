@@ -26,5 +26,3 @@ Bootloader::autoload();
 
 $app = App::getInstance();
 $app->run();
-
-\Models\User::all();
