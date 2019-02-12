@@ -65,11 +65,10 @@ class Auth
      */
     public function register($email, $password, $username): User
     {
-        $user = new User([
-            'email' => $email,
-            'password' => md5(md5($password)), // TODO: Passwordni bu usulda crypt qilish xato!
-            'username' => $username
-        ]);
+        $user = new User();
+        $user->email = $email;
+        $user->password = md5(md5($password)); // TODO: Passwordni bu usulda crypt qilish xato!
+        $user->username = $username;
         $user->save();
         return $user;
     }
@@ -107,8 +106,9 @@ class Auth
             $user = User::find(Session::get('user_id'));
             if ($user) {
                 $this->user = $user;
+            } else {
+                Session::delete('user_id');
             }
-            Session::delete('user_id');
         }
     }
 

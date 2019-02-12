@@ -23,10 +23,10 @@ class View extends ViewAbstract
         $file = ROOT_PATH . "views/$template.php";  // relative to Core directory
         if (is_readable($file)) {
             ob_start();
-            require $file;
+            include $file;
             $view->content = ob_get_clean();
         } else {
-            $view->content = 'Error: on rendering';
+            $view->content = '<!--Error: on rendering-->';
         }
 
         return $view;
@@ -42,7 +42,7 @@ class View extends ViewAbstract
         return $this->content;
     }
 
-    public static function staticRender($content)
+    public static function staticRender($content): void
     {
         if ($content instanceof View) {
             $content->render();
@@ -51,5 +51,10 @@ class View extends ViewAbstract
                 $content = json_encode($content);
             echo $content;
         }
+    }
+
+    public function __toString(): string
+    {
+        return $this->content;
     }
 }

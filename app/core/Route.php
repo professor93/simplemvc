@@ -93,12 +93,11 @@ class Route implements RouteContract
                     if ($basepath != '' && $basepath !== '/') {
                         array_shift($matches);
                     }
-                    $res = '';
                     if ($route['type'] === 'callable') {
                         $res = call_user_func_array($route['function'], $matches);
                     } else if ($route['type'] === 'controller'){
                         [$class, $func] = self::extract_controller($route['function']);
-                        $res = (new $class())->$func($matches);
+                        $res = (new $class())->$func(...$matches);
                     } else $res = $route['function'];
                     View::staticRender($res);
                     $route_match_found = true;

@@ -17,6 +17,12 @@ use App\Core\Route;
 use App\Core\Config;
 
 
+/**
+ * @property DB db
+ * @property Auth auth
+ * @property bool isGuest
+ * @property App instance
+ */
 class App implements SingletonContract
 {
 
@@ -35,8 +41,6 @@ class App implements SingletonContract
         $this->createDbConnection();
         $this->name = Config::get('app.name', $this->name);
         $this->version = Config::get('app.version', $this->version);
-        $this->auth = new Auth();
-        $this->isGuest = $this->auth->user ? false : true;
     }
 
     /**
@@ -52,6 +56,8 @@ class App implements SingletonContract
 
     public function run(): void
     {
+        $this->auth = new Auth();
+        $this->isGuest = $this->auth->user ? false : true;
         $this->includeHelpers();
         $this->collectRoutes();
         Route::run();
@@ -59,15 +65,13 @@ class App implements SingletonContract
 
     private function createDbConnection()
     {
-        if ($this->db === null) {
-            $this->db = new DB([
-                'database_type' => Config::get('db.type'),
-                'database_name' => Config::get('db.database'),
-                'server' => Config::get('db.host'),
-                'username' => Config::get('db.user'),
-                'password' => Config::get('db.password')
-            ]);
-        }
+        $this->db = new DB([
+            'database_type' => Config::get('db.type'),
+            'database_name' => Config::get('db.database'),
+            'server' => Config::get('db.host'),
+            'username' => Config::get('db.user'),
+            'password' => Config::get('db.password')
+        ]);
     }
 
     private function collectRoutes(): void
